@@ -1,10 +1,12 @@
 import './App.css'
 
 function App() {
-
+  
   return (
     <>
-      <h1> Hello World! </h1>
+      <header className="App-header">
+        <h1> SmartMove </h1>
+      </header>
     </>
   )
 }
