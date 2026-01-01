@@ -2,11 +2,12 @@ import './App.css'
 import data from '../public/properties.json'
 import { useState, useEffect } from 'react'
 import { PropertyType, PropertyPostCode, PropertyDateAdded, PropertyPriceRange, PropertyBedroomRange} from './Components/SearchFilter.jsx'
+import Gallery from './Components/Properties.jsx'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 function App() {
-  const [properties] = useState(data.properties)
+  const [properties, setProperties] = useState(data.properties)
   const [filteredProperties, setFilteredProperties] = useState(data.properties)
 
   // Filter States
@@ -77,6 +78,7 @@ function App() {
           </nav>
         </div>
         <div className='property-section'>
+          <Gallery properties={filteredProperties} setProperties={setProperties} />
         </div>
       </div>
     </LocalizationProvider>

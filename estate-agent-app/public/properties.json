@@ -9,7 +9,7 @@
             "shortDescription": "3-bed semi-detached house near Petts Wood station, BR5.",
 			"description":"Attractive three bedroom semi-detached family home situated within 0.5 miles of Petts Wood station with fast trains to London and within easy walking distance of local shops, schools, bus routes and National Trust woodland. The property comprises; two receptions, fitted 18'9 x 10'1 kitchen/breakfast room and conservatory. The property also benefits from having a utility room and cloakroom. To the first floor there are three bedrooms and a family bathroom with separate WC. Additional features include double glazing, gas central heating and a well presented interior...",
 			"location":"Petts Wood Road, Petts Wood, Orpington BR5",
-			"picture":"images/prop1pic1small.jpeg",
+			"picture": "./Images/prop1/prop1pic1small.jpeg",
             "images":[
                 "images/prop1/prop1pic1.jpeg",
                 "images/prop1/prop1pic2.jpeg",
@@ -34,7 +34,7 @@
 			"tenure":"Freehold",
 			"description":"Presented in excellent decorative order throughout is this two double bedroom, two bathroom, garden flat. <br>The modern fitted kitchen is open plan to the living room which boasts solid wooden floors and includes integrated appliances including a dishwasher & a washing machine. This large open plan benefits from bi folding doors onto a secluded private courtyard garden. Both bedrooms are double sized, and the family bathroom boasts a matching three piece suite a shower attachment over the bath. There is also a separate wet room. There are walnut doors throughout and wiring for Sky TV/aerial points in the living room/kitchen and both bedrooms.<br>This apartment being only five years old, is still under a 10 year building guarantee...",
 			"location":"Crofton Road Orpington BR6",
-			"picture":"images/prop2pic1small.jpg",
+			"picture":"Images/prop2pic1small.jpg",
 			"url":"properties/prop2.html",
             "added": {
                 "month":"September",
@@ -51,7 +51,7 @@
             "shortDescription": "5-bed detached family home in Guisborough, TS14.",
 			"description" : "Beautifully presented 5-bedroom detached family home on Middlesbrough Road, Guisborough, with large front and rear gardens, spacious driveway and garage. The heart of the home is a stunning kitchen/diner with integrated appliances, plus separate utility, two en-suites, family bathroom and downstairs WC.",
 			"location" : "Le Grafton, Middlesbrough Road, Guisborough TS14",
-			"picture" : "images/prop3/prop3pic1small.jpeg",
+			"picture" : "Images/prop3/prop3pic1small.jpeg",
             "images" : [
                 "images/prop3/prop3pic1.jpeg",
                 "images/prop3/prop3pic2.jpeg",
@@ -77,7 +77,7 @@
             "shortDescription": "3-bed duplex flat with views over Healey Dell, OL12.",
             "description": "Well-presented three bedroom first-floor duplex apartment on Market Street, Healey, ideally suited to an investor with a current sitting tenant. The property offers flexible accommodation over two levels with two bathrooms, gas central heating, double glazing, allocated parking and attractive views over Healey Dell.",
             "location": "Market Street, Healey, Rochdale OL12",
-            "picture": "images/prop4pic1small.jpeg",
+            "picture": "Images/prop4/prop4pic1small.jpeg",
             "images": [
                 "images/prop4pic1.jpeg",
                 "images/prop4pic2.jpeg",
@@ -105,7 +105,7 @@
             "shortDescription": "Luxury 5-bed house on Chester Terrace, Regent's Park NW1.",
             "description": "Exceptional 5 bedroom house on Chester Terrace, Regent's Park, meticulously refurbished to an outstanding standard. The property features a grand reception room with views across Regent's Park, contemporary kitchen, cinema room, roof terrace, lift to all floors, integral garage and resident parking.",
             "location": "Chester Terrace, Regent's Park, London NW1",
-            "picture": "images/prop5pic1small.jpeg",
+            "picture": "Images/prop5/prop5pic1small.jpeg",
             "images": [
                 "images/prop5pic1.jpeg",
                 "images/prop5pic2.jpeg",
@@ -135,7 +135,7 @@
       "shortDescription": "2-bed first-floor flat with garden and parking in Guildford GU1.",
       "description": "Beautifully presented first floor 2 bedroom flat on Onslow Road, Guildford. The property offers a generous double-aspect kitchen, sitting and dining room, principal bedroom with en suite, a further bedroom and a contemporary bathroom. Benefits from communal gardens and allocated parking.",
       "location": "Onslow Road, Guildford GU1",
-      "picture": "images/prop6pic1small.jpg",
+      "picture": "Images/prop6/prop6pic1small.jpeg",
       "images": [
         "images/prop6pic1.jpeg",
         "images/prop6pic2.jpeg",
@@ -162,7 +162,7 @@
       "shortDescription": "7-bed detached luxury family home in Chislehurst BR7.",
       "description": "Stunning seven bedroom detached family home on Chislehurst Road, designed and built by local developer Frederick Love. Extensively extended and renovated to provide around 4,853 sq ft over three levels, including multiple reception rooms, luxury principal suite, high-spec kitchen and a large landscaped south-facing garden with gated driveway and double garage.",
       "location": "Chislehurst Road, Chislehurst BR7",
-      "picture": "images/prop7pic1small.jpeg",
+      "picture": "Images/prop7/prop7pic1small.jpeg",
       "images": [
         "images/prop7pic1.jpeg",
         "images/prop7pic2.jpeg",
