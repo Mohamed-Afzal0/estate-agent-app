@@ -3,6 +3,7 @@ import data from '../public/properties.json'
 import { useState, useEffect } from 'react'
 import { PropertyType, PropertyPostCode, PropertyDateAdded, PropertyPriceRange, PropertyBedroomRange} from './Components/SearchFilter.jsx'
 import Gallery from './Components/Properties.jsx'
+import PropertyDetails from './Components/PropertyDetails.jsx'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
@@ -16,6 +17,7 @@ function App() {
   const [bedroomRange, setBedroomRange] = useState([0, 10])
   const [dateAdded, setDateAdded] = useState(null)
   const [postcode, setPostcode] = useState('')
+  const [selectedProperty, setSelectedProperty] = useState(null)
 
   // Helper to convert property date object to JS Date
   const getPropertyDate = (added) => {
@@ -61,25 +63,31 @@ function App() {
         <h1> SmartMove </h1>
       </header>
       <div className='Body'>
-        <div className='search-section'>
-          <h2>Find your property</h2>
-          <nav className='Filter'>
-            <PropertyType type={type} setType={setType} />
-            <PropertyPostCode postcode={postcode} setPostcode={setPostcode} />
-            <PropertyDateAdded dateAdded={dateAdded} setDateAdded={setDateAdded} />
-            <div className="Range">
-              <p> Price Range (£)</p>
-              <PropertyPriceRange priceRange={priceRange} setPriceRange={setPriceRange} className="pr"/>
+        {selectedProperty ? (
+          <PropertyDetails property={selectedProperty} onBack={() => setSelectedProperty(null)} />
+        ) : (
+          <>
+            <div className='search-section'>
+              <h2>Find your property</h2>
+              <nav className='Filter'>
+                <PropertyType type={type} setType={setType} />
+                <PropertyPostCode postcode={postcode} setPostcode={setPostcode} />
+                <PropertyDateAdded dateAdded={dateAdded} setDateAdded={setDateAdded} />
+                <div className="Range">
+                  <p> Price Range (£)</p>
+                  <PropertyPriceRange priceRange={priceRange} setPriceRange={setPriceRange} className="pr"/>
+                </div>
+                <div className="Range">
+                  <p> Bedroom Range </p>
+                  <PropertyBedroomRange bedroomRange={bedroomRange} setBedroomRange={setBedroomRange} />
+                </div>
+              </nav>
             </div>
-            <div className="Range">
-              <p> Bedroom Range </p>
-              <PropertyBedroomRange bedroomRange={bedroomRange} setBedroomRange={setBedroomRange} />
+            <div className='property-section'>
+              <Gallery properties={filteredProperties} allProperties={properties} onViewProperty={setSelectedProperty} />
             </div>
-          </nav>
-        </div>
-        <div className='property-section'>
-          <Gallery properties={filteredProperties} setProperties={setProperties} />
-        </div>
+          </>
+        )}
       </div>
     </LocalizationProvider>
   )
