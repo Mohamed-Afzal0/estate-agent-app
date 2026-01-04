@@ -1,6 +1,6 @@
 import '../App.css'
 import React, { useState } from 'react';
-import { Box, Tabs, Tab} from '@mui/material';
+import {Tabs, Tab} from '@mui/material';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 function CustomTabPanel(props) {
@@ -61,29 +61,28 @@ export default function PropertyDetails({ property, onBack }) {
                 </div>
             </div>
             <div>
-                <div>
-                    <div>
-                        <Tabs value={value} onChange={handleTabChange} aria-label="property details tabs">
-                            <Tab label="Description"/>
-                            <Tab label="Floor Plan"/>
-                            <Tab label="Location Map"/>
-                        </Tabs>
-                    </div>
-                    <CustomTabPanel value={value} index={0}>
-                        <h5> {property.shortDescription} </h5>
-                        <p> {property.description} </p>
-                    </CustomTabPanel>
-
-                    <CustomTabPanel value={value} index={1}>
-                        <img src={property.floorPlan} alt="Floor Plan" style={{ maxWidth: '100%', height: 'auto' }} />
-                    </CustomTabPanel>
-
-                    <CustomTabPanel value={value} index={2}>
-                        <p> {property.location} </p>
-                        <iframe className='mapLocation' src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location)}&output=embed`}>
-                        </iframe>
-                    </CustomTabPanel>
+                <div className='tabs3'>
+                    <Tabs value={value} onChange={handleTabChange} aria-label="property details tabs">
+                        <Tab label="Description"/>
+                        <Tab label="Floor Plan"/>
+                        <Tab label="Location Map"/>
+                    </Tabs>
                 </div>
+                <CustomTabPanel value={value} index={0}>
+                    <h5 className='shortdis'> {property.shortDescription} </h5>
+                    <p> {property.description} </p>
+                    <p> <b>Tenure:</b> {property.tenure} </p>
+                </CustomTabPanel>
+
+                <CustomTabPanel value={value} index={1}>
+                    <img src={property.floorPlan} alt="Floor Plan" style={{ maxWidth: '100%', height: 'auto' }} />
+                </CustomTabPanel>
+
+                <CustomTabPanel value={value} index={2}>
+                    <p> {property.location} </p>
+                    <iframe className='mapLocation' src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location)}&output=embed`}>
+                    </iframe>
+                </CustomTabPanel>
             </div>
         </>
     );
