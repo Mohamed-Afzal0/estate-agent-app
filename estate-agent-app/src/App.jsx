@@ -6,6 +6,7 @@ import Gallery from './Components/Properties.jsx'
 import PropertyDetails from './Components/PropertyDetails.jsx'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import homeImage from '../public/Images/Others/Home.jpg'
 
 function App() {
   const [properties, setProperties] = useState(data.properties)
@@ -27,6 +28,27 @@ function App() {
     }
     return new Date(added.year, months[added.month], added.day)
   }
+
+  // URL Hash-based Routing to select a property
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      const propertyMatch = hash.match(/^#\/property\/(.+)$/);
+
+      if (propertyMatch) {
+        const propertyId = propertyMatch[1];
+        const property = properties.find(p => p.id === propertyId);
+        setSelectedProperty(property || null);
+      } else {
+        setSelectedProperty(null);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    handleHashChange(); // Check hash on initial load
+
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, [properties]);
 
   // Filter Logic
   useEffect(() => {
@@ -57,26 +79,78 @@ function App() {
     setFilteredProperties(filtered)
   }, [type, priceRange, bedroomRange, postcode, dateAdded, properties])
 
+  const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleViewProperty = (property) => {
+    if (property) {
+      window.location.hash = `#/property/${property.id}`;
+    }
+  };
+
+  const handleBack = () => {
+    window.location.hash = '#/';
+  };
+
+  function Footer() {
+    return (
+      <footer style={{ backgroundColor: '#fff', padding: '48px 0', marginTop: '32px', borderTop: '1px solid #e0e0e0', textAlign: 'center', color: 'rgba(0, 0, 0, 0.6)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+          <h3 style={{ margin: '0 0 0.35em', fontSize: '1.25rem', fontWeight: 500, color: 'rgba(0, 0, 0, 0.87)' }}>
+            SmartMove
+          </h3>
+          <p style={{ margin: '0 0 16px', fontSize: '1rem' }}>
+            Helping you find the perfect place to call home.
+          </p>
+          <p style={{ margin: 0, fontSize: '0.875rem' }}>
+            {'Copyright © '}
+            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
+              SmartMove Estate Agents
+            </a>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+          </p>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <header className="App-header">
         <h1> SmartMove </h1>
+        {!selectedProperty && (
+          <nav>
+            <button onClick={() => handleScroll('filter-section')}>Filter</button>
+            <button onClick={() => handleScroll('properties-section')}>All Properties</button>
+          </nav>
+        )}
       </header>
       <div className='Body'>
         {selectedProperty ? (
-          <PropertyDetails property={selectedProperty} onBack={() => setSelectedProperty(null)} />
+          <PropertyDetails property={selectedProperty} onBack={handleBack} />
         ) : (
           <>
-            <div className='search-section'>
-              <h2>Find your property</h2>
-              <FilterPanel type={type} setType={setType} priceRange={priceRange} setPriceRange={setPriceRange} bedroomRange={bedroomRange} setBedroomRange={setBedroomRange} dateAdded={dateAdded} setDateAdded={setDateAdded} postcode={postcode} setPostcode={setPostcode} />
+            <div id="filter-section" className='top-section'>
+              <div className="home-image-container">
+                  <img src={homeImage} alt="A modern house" className="home-image"/>
+              </div>
+              <div className='search-section'>
+                <h2>Find your property</h2>
+                <FilterPanel type={type} setType={setType} priceRange={priceRange} setPriceRange={setPriceRange} bedroomRange={bedroomRange} setBedroomRange={setBedroomRange} dateAdded={dateAdded} setDateAdded={setDateAdded} postcode={postcode} setPostcode={setPostcode} />
+              </div>
             </div>
-            <div className='property-section'>
-              <Gallery properties={filteredProperties} allProperties={properties} onViewProperty={setSelectedProperty} />
+            <div id="properties-section" className='property-section'>
+              <Gallery properties={filteredProperties} allProperties={properties} onViewProperty={handleViewProperty} />
             </div>
           </>
         )}
       </div>
+      <Footer />
     </LocalizationProvider>
   )
 }

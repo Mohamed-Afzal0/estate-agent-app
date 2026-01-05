@@ -2,7 +2,7 @@ import '../App.css'
 import { useState, useEffect } from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { ClassNames } from '@emotion/react';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 
 const HeartIcon = ({ isFavorite }) => (
     isFavorite ? <FavoriteIcon sx={{ color: 'red' }} /> : <FavoriteBorderIcon />
@@ -92,6 +92,11 @@ const Gallery = ({ properties, allProperties, onViewProperty }) => {
                 onDrop={handleDrop}
             >
                 <h2>Favorites</h2>
+                {favorites.length > 0 && (
+                    <button onClick={() => setFavorites([])} className='favremove' style={{marginBottom: '10px', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '5px'}}>
+                        <CleaningServicesIcon /> Clear Favorites
+                    </button>
+                )}
                 <div className="favprops">
                     {favorites.length === 0 ? (
                         <p>No favorites selected.</p>
