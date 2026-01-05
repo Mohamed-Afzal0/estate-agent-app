@@ -72,7 +72,7 @@ function PropertyPriceRange({ priceRange, setPriceRange }) {
     }
 
     return (
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div style={{ display: 'flex', gap: '10px', padding: '10px' }}>
             <FormControl fullWidth>
                 <InputLabel>Min Price</InputLabel>
                 <Select
