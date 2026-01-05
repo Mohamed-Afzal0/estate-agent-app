@@ -1,7 +1,7 @@
 import './App.css'
 import data from '../public/properties.json'
 import { useState, useEffect } from 'react'
-import { PropertyType, PropertyPostCode, PropertyDateAdded, PropertyPriceRange, PropertyBedroomRange} from './Components/SearchFilter.jsx'
+import { FilterPanel} from './Components/SearchFilter.jsx'
 import Gallery from './Components/Properties.jsx'
 import PropertyDetails from './Components/PropertyDetails.jsx'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -69,19 +69,7 @@ function App() {
           <>
             <div className='search-section'>
               <h2>Find your property</h2>
-              <nav className='Filter'>
-                <PropertyType type={type} setType={setType} />
-                <PropertyPostCode postcode={postcode} setPostcode={setPostcode} />
-                <PropertyDateAdded dateAdded={dateAdded} setDateAdded={setDateAdded} />
-                <div className="Range">
-                  <p> Price Range (£)</p>
-                  <PropertyPriceRange priceRange={priceRange} setPriceRange={setPriceRange} className="pr"/>
-                </div>
-                <div className="Range">
-                  <p> Bedroom Range </p>
-                  <PropertyBedroomRange bedroomRange={bedroomRange} setBedroomRange={setBedroomRange} />
-                </div>
-              </nav>
+              <FilterPanel type={type} setType={setType} priceRange={priceRange} setPriceRange={setPriceRange} bedroomRange={bedroomRange} setBedroomRange={setBedroomRange} dateAdded={dateAdded} setDateAdded={setDateAdded} postcode={postcode} setPostcode={setPostcode} />
             </div>
             <div className='property-section'>
               <Gallery properties={filteredProperties} allProperties={properties} onViewProperty={setSelectedProperty} />

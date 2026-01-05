@@ -53,29 +53,55 @@ function PropertyDateAdded({ dateAdded, setDateAdded }) {
 }
 
 function PropertyPriceRange({ priceRange, setPriceRange }) {
+    const minPrice = priceRange[0];
+    const maxPrice = priceRange[1];
+
+    const handleMinChange = (event) => {
+        const newMin = Number(event.target.value);
+        setPriceRange([newMin, Math.max(newMin, maxPrice)]);
+    };
+
+    const handleMaxChange = (event) => {
+        const newMax = Number(event.target.value);
+        setPriceRange([Math.min(minPrice, newMax), newMax]);
+    };
+
+    const prices = [];
+    for (let i = 0; i <= 9000000; i += 50000) {
+        prices.push(i);
+    }
+
     return (
-        <Slider
-            value={priceRange}
-            onChange={(e, newValue) => setPriceRange(newValue)}
-            valueLabelDisplay="auto"
-            min={0}
-            max={9000000}
-            step={50000}
-            color='primary'
-            sx={{
-                '& .MuiSlider-thumb': {
-                    color: 'black',
-                    height: 20,
-                    width: 20,
-                    backgroundColor: '#fff',
-                    border: '2px solid currentColor',
-                },
-                '& .MuiSlider-track': {
-                    borderRadius: 4,
-                    color: 'black',
-                },
-            }}
-        />
+        <div style={{ display: 'flex', gap: '10px' }}>
+            <FormControl fullWidth>
+                <InputLabel>Min Price</InputLabel>
+                <Select
+                    value={minPrice}
+                    label="Min Price"
+                    onChange={handleMinChange}
+                >
+                    {prices.map((price) => (
+                        <MenuItem key={price} value={price}>
+                            £{price.toLocaleString()}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <FormControl fullWidth>
+                <InputLabel>Max Price</InputLabel>
+                <Select
+                    value={maxPrice}
+                    label="Max Price"
+                    onChange={handleMaxChange}
+                >
+                    {prices.map((price) => (
+                        <MenuItem key={price} value={price}>
+                            £{price.toLocaleString()}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+        </div>
     )
 }
 
@@ -85,6 +111,9 @@ function PropertyBedroomRange({ bedroomRange, setBedroomRange }) {
             value={bedroomRange}
             onChange={(e, newValue) => setBedroomRange(newValue)}
             valueLabelDisplay="auto"
+            shiftStep={1}
+            step={1}
+            marks
             min={0}
             max={10}
             sx={{
@@ -104,4 +133,22 @@ function PropertyBedroomRange({ bedroomRange, setBedroomRange }) {
     )
 }
 
-export { PropertyType, PropertyPostCode, PropertyDateAdded, PropertyPriceRange, PropertyBedroomRange}
+function FilterPanel({ type, setType, priceRange, setPriceRange, bedroomRange, setBedroomRange, dateAdded, setDateAdded, postcode, setPostcode }) {
+    return (
+        <nav className='Filter'>
+            <PropertyType type={type} setType={setType} />
+            <PropertyPostCode postcode={postcode} setPostcode={setPostcode} />
+            <PropertyDateAdded dateAdded={dateAdded} setDateAdded={setDateAdded} />
+            <div className="Range">
+                <p style={{marginBottom: '4px',}}> Price Range (£)</p>
+                <PropertyPriceRange priceRange={priceRange} setPriceRange={setPriceRange} className="pr"/>
+            </div>
+            <div className="Range">
+                <p> Bedroom Range </p>
+                <PropertyBedroomRange bedroomRange={bedroomRange} setBedroomRange={setBedroomRange} />
+            </div>
+        </nav>
+    );
+}
+
+export { FilterPanel}

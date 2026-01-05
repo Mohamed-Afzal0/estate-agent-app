@@ -70,7 +70,7 @@ export default function PropertyDetails({ property, onBack }) {
                 </div>
                 <CustomTabPanel value={value} index={0}>
                     <h5 className='shortdis'> {property.shortDescription} </h5>
-                    <p> {property.description} </p>
+                    <p className='longdis'> {property.description} </p>
                     <p> <b>Tenure:</b> {property.tenure} </p>
                 </CustomTabPanel>
 
