@@ -6,6 +6,7 @@ import Gallery from './Components/Properties.jsx'
 import PropertyDetails from './Components/PropertyDetails.jsx'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import logo from '../public/Images/Others/Logo.jpg'
 import homeImage from '../public/Images/Others/Home.jpg'
 
 function App() {
@@ -122,7 +123,10 @@ function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <header className="App-header">
-        <h1> SmartMove </h1>
+        <div className="logo-title" onClick={handleBack}>
+          <img src={logo} alt="SmartMove Logo" className="logo" />
+          <h1> SmartMove </h1>
+        </div>
         {!selectedProperty && (
           <nav>
             <button onClick={() => handleScroll('filter-section')}>Filter</button>
